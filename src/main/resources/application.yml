@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: LineUp
+  profiles:
+    include: server, db, config, security
+
+logging:
+  level:
+    root: info
+
