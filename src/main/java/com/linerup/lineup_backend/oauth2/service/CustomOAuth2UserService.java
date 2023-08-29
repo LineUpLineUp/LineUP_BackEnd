@@ -1,6 +1,6 @@
 package com.linerup.lineup_backend.oauth2.service;
 /**
-* @author :
+* @author : hyunwoopark
 * @version : 1.0.0
 * @package : com.linerup.lineup_backend.oauth2.service
 * @name : CustomOAuth2UserService.java
@@ -18,7 +18,6 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -37,9 +36,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService implements
     this.userRepository = userRepository;
   }
 
+//  public OAuth2User authenticationWithNaver(String code, String state){
+//    OAuth2UserRequest request = new OAuth2UserRequest();
+//  }
   @Override
   public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
     String registrationId = userRequest.getClientRegistration().getRegistrationId();
+    log.info("userRequest = " + userRequest);
     log.info("registrationId = " + registrationId);
 
     Map<String, Object> attributes;

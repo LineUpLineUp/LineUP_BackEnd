@@ -7,4 +7,5 @@ spring:
 logging:
   level:
     root: info
-
+    org.springframework.security.oauth2: debug
+    com.linerup.lineup_backend: debug
