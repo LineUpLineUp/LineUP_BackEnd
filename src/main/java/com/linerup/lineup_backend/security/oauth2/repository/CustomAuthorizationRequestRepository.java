@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.oauth2.repository;
+package com.linerup.lineup_backend.security.oauth2.repository;
 
 
 import jakarta.servlet.http.HttpServletRequest;

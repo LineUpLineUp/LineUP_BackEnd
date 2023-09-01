@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.oauth2.service;
+package com.linerup.lineup_backend.security.oauth2.service;
 /**
 * @author : hyunwoopark
 * @version : 1.0.0
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.linerup.lineup_backend.domain.OAuth2Provider;
 import com.linerup.lineup_backend.domain.Member;
 import com.linerup.lineup_backend.domain.repository.UserRepository;
-import com.linerup.lineup_backend.oauth2.user.CustomOAuth2User;
+import com.linerup.lineup_backend.security.oauth2.user.CustomOAuth2User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -59,12 +59,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService implements
       oAuth2User = super.loadUser(userRequest);
     }
 
-
     OAuth2Provider oAuth2Provider = OAuth2Provider.getProvider(userRequest);
     Member member = processUser(userRepository, oAuth2Provider, oAuth2User.getAttributes());
     return new CustomOAuth2User(member.getId(), member.getRole(), oAuth2User);
   }
-  public Map<String, Object> decodeJwtPayload(String jwtToken){
+  private Map<String, Object> decodeJwtPayload(String jwtToken){
     Map<String, Object> jwtClaims = new HashMap<>();
     try {
       String[] parts = jwtToken.split("\\.");

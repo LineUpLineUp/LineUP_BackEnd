@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.oauth2.converter;
+package com.linerup.lineup_backend.security.oauth2.converter;
 
 
 import io.jsonwebtoken.JwsHeader;

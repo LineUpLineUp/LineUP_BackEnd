@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.oauth2.userinfo;
+package com.linerup.lineup_backend.security.oauth2.userinfo;
 /**
 * @author :
 * @version : 1.0.0
@@ -15,7 +15,6 @@ public class CustomOAuth2UserInfoFactory {
   public static CustomOAuth2UserInfo create(OAuth2Provider provider,
                                             Map<String, Object> attributes) {
     return switch (provider) {
-      case GITHUB -> new GithubOAuth2UserInfo(attributes);
       case GOOGLE -> new GoogleOAuth2UserInfo(attributes);
       case KAKAO -> new KakaoOAuth2UserInfo(attributes);
       case NAVER -> new NaverOAuth2UserInfo(attributes);

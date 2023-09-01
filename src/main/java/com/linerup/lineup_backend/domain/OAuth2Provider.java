@@ -11,7 +11,6 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 
 public enum OAuth2Provider {
   GOOGLE,
-  GITHUB,
   KAKAO,
   NAVER,
   APPLE;

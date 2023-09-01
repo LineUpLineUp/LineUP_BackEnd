@@ -1,6 +1,6 @@
 package com.linerup.lineup_backend.config;
 
-import com.linerup.lineup_backend.oauth2.converter.CustomRequestEntityConverter;
+import com.linerup.lineup_backend.security.oauth2.converter.CustomRequestEntityConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

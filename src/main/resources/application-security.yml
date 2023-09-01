@@ -6,14 +6,21 @@ spring:
           google:
             client-id: ${oauth.google.client-id}
             client-secret: ${oauth.google.client-secret}
+            redirect-uri: https://${base-uri}/login/oauth2/code/google
+            scope:
+              - profile
+              - email
           kakao:
             client-id: ${oauth.kakao.client-id}
+            client-secret: ${oauth.kakao.client-secret}
             client-name: Kakao
             authorization-grant-type: authorization_code
+            redirect-uri: https://${base-uri}/login/oauth2/code/kakao
+            client-authentication-method: client_secret_post
             scope:
-              - email
-              - name
-            redirect-uri: kakaoRedirectUri
+              - account_email
+              - profile_nickname
+
           naver:
             client-id: ${oauth.naver.client-id}
             client-secret: ${oauth.naver.client-secret}
@@ -47,3 +54,6 @@ spring:
           apple:
             authorization-uri: https://appleid.apple.com/auth/authorize?response_mode=form_post
             token-uri: https://appleid.apple.com/auth/token
+jwt:
+  secret:
+    key: ${jwt.secret.key}

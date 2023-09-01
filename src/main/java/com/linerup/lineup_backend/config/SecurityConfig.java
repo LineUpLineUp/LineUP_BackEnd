@@ -8,15 +8,15 @@ package com.linerup.lineup_backend.config;
  * @modified :
  **/
 
-import com.linerup.lineup_backend.oauth2.repository.CustomAuthorizationRequestRepository;
-import com.linerup.lineup_backend.oauth2.service.CustomOAuth2UserService;
-import com.linerup.lineup_backend.oauth2.service.CustomOidcUserService;
+import com.linerup.lineup_backend.security.oauth2.repository.CustomAuthorizationRequestRepository;
+import com.linerup.lineup_backend.security.oauth2.service.CustomOAuth2UserService;
+import com.linerup.lineup_backend.security.oauth2.service.CustomOidcUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.endpoint.OAuth2AccessTokenResponseClient;
 import org.springframework.security.oauth2.client.endpoint.OAuth2AuthorizationCodeGrantRequest;
 import org.springframework.security.web.SecurityFilterChain;
@@ -30,7 +30,6 @@ public class SecurityConfig {
     private final CustomOidcUserService customOidcUserService;
     private final CustomAuthorizationRequestRepository customAuthorizationRequestRepository;
     private final OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> accessTokenResponseClient;
-    private final OAuth2AuthorizedClientService oAuth2AuthorizedClientService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -40,18 +39,16 @@ public class SecurityConfig {
                 .and()
                 .authorizationEndpoint().authorizationRequestRepository(customAuthorizationRequestRepository)
                 .and()
-                .authorizedClientService(oAuth2AuthorizedClientService)
-
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService)
                 .oidcUserService(customOidcUserService);
 
-
         http.authorizeHttpRequests()
-                .anyRequest().permitAll();
-//      .anyRequest().authenticated();
+                .anyRequest().authenticated();
 
-        http.csrf().disable();
+        http.csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         return http.build();
     }
