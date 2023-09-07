@@ -12,7 +12,8 @@ import com.google.common.base.Objects;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.ToString;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.time.LocalDate;
 
 @Entity
 @ToString
@@ -34,6 +35,20 @@ public class Member {
     private String userEmail;
     @Column(nullable = true)
     private String userName;
+
+    @Column(nullable = false)
+    private String userNickname;
+
+    @Column(nullable = false)
+    private String userPhone;
+
+    @Column(nullable = true)
+    private String userProfileImage;
+
+    @Column(nullable = false)
+    private LocalDate userBirth;
+
+
 
     @Enumerated(EnumType.STRING)
     @Column(length = 15, nullable = false)
