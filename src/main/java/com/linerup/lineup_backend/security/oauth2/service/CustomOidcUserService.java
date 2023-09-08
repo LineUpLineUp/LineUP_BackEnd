@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.oauth2.service;
+package com.linerup.lineup_backend.security.oauth2.service;
 /**
 * @author : 
 * @version : 1.0.0
@@ -7,10 +7,10 @@ package com.linerup.lineup_backend.oauth2.service;
 * @date : 2023/08/25 3:59 AM
 * @modified : 
 **/
+import com.linerup.lineup_backend.security.oauth2.user.CustomOidcUser;
 import com.linerup.lineup_backend.domain.OAuth2Provider;
 import com.linerup.lineup_backend.domain.Member;
 import com.linerup.lineup_backend.domain.repository.UserRepository;
-import com.linerup.lineup_backend.oauth2.user.CustomOidcUser;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;

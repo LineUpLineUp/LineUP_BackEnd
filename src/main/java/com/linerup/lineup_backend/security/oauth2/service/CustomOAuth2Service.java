@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.oauth2.service;
+package com.linerup.lineup_backend.security.oauth2.service;
 /**
  * @author :
  * @version : 1.0.0
@@ -8,11 +8,11 @@ package com.linerup.lineup_backend.oauth2.service;
  * @modified :
  **/
 
+import com.linerup.lineup_backend.security.oauth2.userinfo.CustomOAuth2UserInfo;
+import com.linerup.lineup_backend.security.oauth2.userinfo.CustomOAuth2UserInfoFactory;
 import com.linerup.lineup_backend.domain.Member;
 import com.linerup.lineup_backend.domain.OAuth2Provider;
 import com.linerup.lineup_backend.domain.repository.UserRepository;
-import com.linerup.lineup_backend.oauth2.userinfo.CustomOAuth2UserInfo;
-import com.linerup.lineup_backend.oauth2.userinfo.CustomOAuth2UserInfoFactory;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.oauth2.user;
+package com.linerup.lineup_backend.security.oauth2.user;
 /**
 * @author : 
 * @version : 1.0.0

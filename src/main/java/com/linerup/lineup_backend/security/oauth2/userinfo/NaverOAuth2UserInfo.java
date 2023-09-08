@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.oauth2.userinfo;
+package com.linerup.lineup_backend.security.oauth2.userinfo;
 
 import java.util.Map;
 
