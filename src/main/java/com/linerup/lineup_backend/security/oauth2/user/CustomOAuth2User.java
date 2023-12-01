@@ -9,9 +9,9 @@ package com.linerup.lineup_backend.security.oauth2.user;
 **/
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
-import com.linerup.lineup_backend.common.Id;
-import com.linerup.lineup_backend.domain.Role;
-import com.linerup.lineup_backend.domain.Member;
+import com.linerup.lineup_backend.common.model.Id;
+import com.linerup.lineup_backend.common.model.Role;
+import com.linerup.lineup_backend.domain.member.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 

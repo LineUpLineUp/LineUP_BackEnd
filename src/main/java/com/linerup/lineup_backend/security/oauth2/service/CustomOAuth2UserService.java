@@ -10,7 +10,7 @@ package com.linerup.lineup_backend.security.oauth2.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.linerup.lineup_backend.domain.OAuth2Provider;
-import com.linerup.lineup_backend.domain.Member;
+import com.linerup.lineup_backend.domain.member.Member;
 import com.linerup.lineup_backend.domain.repository.UserRepository;
 import com.linerup.lineup_backend.security.oauth2.user.CustomOAuth2User;
 import lombok.extern.slf4j.Slf4j;

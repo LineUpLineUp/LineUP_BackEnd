@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.domain;
+package com.linerup.lineup_backend.common.model;
 /**
 * @author :
 * @version : 1.0.0
@@ -8,6 +8,6 @@ package com.linerup.lineup_backend.domain;
 * @modified :
 **/
 public enum Role {
-  ROLE_USER,
-  ROLE_ADMIN
+  USER,
+  ADMIN
 }

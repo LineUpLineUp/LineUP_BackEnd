@@ -1,34 +1,61 @@
 package com.linerup.lineup_backend.domain.post;
 
+import com.linerup.lineup_backend.common.model.BaseEntity;
+import com.linerup.lineup_backend.common.model.JobRequirement;
+import com.linerup.lineup_backend.common.model.Place;
+import com.linerup.lineup_backend.domain.member.Member;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Value;
+
+import java.time.LocalDateTime;
+
+import static jakarta.persistence.FetchType.*;
 
 /**
- * @author : hyunwoopark
- * @version : 1.0.0
- * @package : LineUP_BackEnd
- * @name : post
- * @date : 2023/09/03 6:43 PM
- * @modifyed : $
- **/
+ * packageName    : com.linerup.lineup_backend.domain.post
+ * fileName       : Post
+ * author         : moongi
+ * date           : 11/29/23
+ * description    :
+ */
+
 @Entity
-public class Post {
+public class Post extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 공고 id
 
-    //다른 필드들은 type 영향을 받아 달라질수 있지만
-    //공통되는것들은 그냥 가지고 있는거지
-    //content 추상클래스
-    //장기 콘텐츠 extends contents
-    //단기 콘텐트 extends contents
+    @Nonnull
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
-    //만약에 post 안에 그 장 단기 필드 자체는 다 있어
-    //그걸 이제 enum type으로 장기 단기를 구분해
-    //이제 이걸 fetch할때 null로 비어있는 값들을 장단기에 따라서 projection으로 없애버리고
-    //front에서는 이제 type을 기준으로 화면 렌더링을 다르게 하는거지
-    //쿼리가 오히려 짧아짐
-    //project 내부쿼리가
-    //select * from
-    //select '' ,'' ,'' ,''from
+    @Nonnull
+    private String title; // 공고 제목
+
+    @Nonnull
+    private LocalDateTime startDate; // 근무 시작 시간
+
+    @Nonnull
+    private LocalDateTime endDate; // 근무 종료 시간
+
+    @Nonnull
+    private Place place; // 근무지 정보
+
+    @Nonnull
+    private long salary; // 급여
+
+    private String image; // 사진
+
+    private JobRequirement jobRequireMent; // 지원 자격
+
+    @Nonnull
+    private String content; // 공고 내용
+
+    private boolean isAgree; // 라인업 줄서기 대행 준수사항 동의
+
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.common;
+package com.linerup.lineup_backend.common.model;
 
 /**
 * @author :

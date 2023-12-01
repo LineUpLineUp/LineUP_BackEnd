@@ -7,9 +7,9 @@ package com.linerup.lineup_backend.security.oauth2.service;
 * @date : 2023/08/25 3:59 AM
 * @modified : 
 **/
+import com.linerup.lineup_backend.domain.member.Member;
 import com.linerup.lineup_backend.security.oauth2.user.CustomOidcUser;
 import com.linerup.lineup_backend.domain.OAuth2Provider;
-import com.linerup.lineup_backend.domain.Member;
 import com.linerup.lineup_backend.domain.repository.UserRepository;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
