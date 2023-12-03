@@ -1,7 +1,7 @@
 package com.linerup.lineup_backend.domain.repository;
 
 
-import com.linerup.lineup_backend.domain.Member;
+import com.linerup.lineup_backend.domain.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
