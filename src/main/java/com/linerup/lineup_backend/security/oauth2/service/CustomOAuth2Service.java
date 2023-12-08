@@ -8,7 +8,7 @@ package com.linerup.lineup_backend.security.oauth2.service;
  * @modified :
  **/
 
-import com.linerup.lineup_backend.domain.member.Member;
+import com.linerup.lineup_backend.member.command.domain.Member;
 import com.linerup.lineup_backend.security.oauth2.userinfo.CustomOAuth2UserInfo;
 import com.linerup.lineup_backend.security.oauth2.userinfo.CustomOAuth2UserInfoFactory;
 import com.linerup.lineup_backend.domain.OAuth2Provider;

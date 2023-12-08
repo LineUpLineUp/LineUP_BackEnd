@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.domain.post;
+package com.linerup.lineup_backend.post.command.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

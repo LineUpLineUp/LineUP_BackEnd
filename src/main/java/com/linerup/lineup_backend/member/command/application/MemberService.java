@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.domain.member;
+package com.linerup.lineup_backend.member.command.application;
 
 import org.springframework.stereotype.Service;
 

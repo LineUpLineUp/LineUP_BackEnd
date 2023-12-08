@@ -1,12 +1,13 @@
-package com.linerup.lineup_backend.domain.post;
+package com.linerup.lineup_backend.post.command.domain;
 
-import com.linerup.lineup_backend.common.model.BaseEntity;
-import com.linerup.lineup_backend.common.model.JobRequirement;
-import com.linerup.lineup_backend.common.model.Place;
-import com.linerup.lineup_backend.domain.member.Member;
+import com.linerup.lineup_backend.common.model.*;
+import com.linerup.lineup_backend.member.command.domain.Member;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
-
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.FetchType.*;
@@ -19,7 +20,10 @@ import static jakarta.persistence.FetchType.*;
  * description    :
  */
 
+@Getter
 @Entity
+@ToString
+@RequiredArgsConstructor
 public class Post extends BaseEntity {
 
     @Id
@@ -32,6 +36,11 @@ public class Post extends BaseEntity {
     private Member member;
 
     @Nonnull
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "place_id")
+    private Place place;
+
+    @Nonnull
     private String title; // 공고 제목
 
     @Nonnull
@@ -39,9 +48,6 @@ public class Post extends BaseEntity {
 
     @Nonnull
     private LocalDateTime endDate; // 근무 종료 시간
-
-    @Nonnull
-    private Place place; // 근무지 정보
 
     @Nonnull
     private long salary; // 급여
@@ -55,7 +61,14 @@ public class Post extends BaseEntity {
 
     private boolean isAgree; // 라인업 줄서기 대행 준수사항 동의
 
+    private Integer viewCount; // 조회수
 
+    private Integer likeCount; // 좋아요 개수
 
+    @Enumerated(EnumType.STRING)
+    private Category category; // 카테고리
+
+    @Enumerated(EnumType.STRING)
+    private PostStatus postStatus; // 구인 현황
 
 }

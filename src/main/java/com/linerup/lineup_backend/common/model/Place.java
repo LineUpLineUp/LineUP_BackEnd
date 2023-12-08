@@ -1,6 +1,9 @@
 package com.linerup.lineup_backend.common.model;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -13,10 +16,12 @@ import java.util.Objects;
  * description    :
  */
 
-@Embeddable
 @Getter
+@Entity
 public class Place {
 
+    @Id @GeneratedValue
+    String id;
     String map_id; // 맵 유니크 아이디
     String name; // 상호명
     String address; // 도로명 주소
