@@ -16,7 +16,7 @@ import java.util.Objects;
 public class JobRequirement {
 
     String recruitGender; // 모집 성별
-    String recruitAge; // 모집 인원
+    String recruitAge; // 모집 연령
     String recruitNumber; // 모집 인원
 
     protected JobRequirement() {

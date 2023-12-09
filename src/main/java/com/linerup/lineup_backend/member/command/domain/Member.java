@@ -1,4 +1,4 @@
-package com.linerup.lineup_backend.domain.member;
+package com.linerup.lineup_backend.member.command.domain;
 
 import com.linerup.lineup_backend.common.model.BaseEntity;
 import com.linerup.lineup_backend.domain.OAuth2Provider;
@@ -29,14 +29,14 @@ public class Member extends BaseEntity {
 
     @Nonnull
     @Enumerated(EnumType.STRING)
-    private OAuth2Provider provider;
+    private OAuth2Provider provider; // SNS 로그인 register
 
     @Nonnull
-    private String providerId;
+    private String providerId; // SNS 로그인 registerId(SNS)
 
     @Nonnull
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role; // 역할 구분
 
     @Nonnull
     private String email; // 이메일
