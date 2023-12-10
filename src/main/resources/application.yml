@@ -3,6 +3,8 @@ spring:
     name: LineUp
   profiles:
     include: server, db, config, security
+  main:
+    allow-bean-definition-overriding: true
 
 logging:
   level:
