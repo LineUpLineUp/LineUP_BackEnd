@@ -1,0 +1,185 @@
+paths:
+  /login/oauth2/code/apple:
+    post:
+      summary: Apple 로그인
+      parameters:
+        - name: code
+          in: query
+          description: Apple에서 제공하는 인증 코드
+          required: true
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: 아무거나 넣어주세요
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 로그인 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: object
+                    properties:
+                      consumerTypeExist:
+                        type: boolean
+                      jwtToken:
+                        type: object
+                        properties:
+                          accessToken:
+                            type: string
+                          accessExpirationTime:
+                            type: integer
+                          refreshToken:
+                            type: string
+                          refreshExpirationTime:
+                            type: integer
+  /login/oauth2/code/google:
+    post:
+      summary: Google 로그인
+      parameters:
+        - name: code
+          in: query
+          description: Google에서 제공하는 인증 코드
+          required: true
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: 아무거나 넣어주세요
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 로그인 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: object
+                    properties:
+                      consumerTypeExist:
+                        type: boolean
+                      jwtToken:
+                        type: object
+                        properties:
+                          accessToken:
+                            type: string
+                          accessExpirationTime:
+                            type: integer
+                          refreshToken:
+                            type: string
+                          refreshExpirationTime:
+                            type: integer
+  /login/oauth2/code/kakao:
+    post:
+      summary: Kakao 로그인
+      parameters:
+        - name: code
+          in: query
+          description: Kakao에서 제공하는 인증 코드
+          required: true
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: 아무거나 넣어주세요
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 로그인 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: object
+                    properties:
+                      consumerTypeExist:
+                        type: boolean
+                      jwtToken:
+                        type: object
+                        properties:
+                          accessToken:
+                            type: string
+                          accessExpirationTime:
+                            type: integer
+                          refreshToken:
+                            type: string
+                          refreshExpirationTime:
+                            type: integer
+  /login/oauth2/code/naver:
+    post:
+      summary: Naver 로그인
+      parameters:
+        - name: code
+          in: query
+          description: Naver에서 제공하는 인증 코드
+          required: true
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: 아무거나 넣어주세요
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 로그인 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: object
+                    properties:
+                      consumerTypeExist:
+                        type: boolean
+                      jwtToken:
+                        type: object
+                        properties:
+                          accessToken:
+                            type: string
+                          accessExpirationTime:
+                            type: integer
+                          refreshToken:
+                            type: string
+                          refreshExpirationTime:
+                            type: integer

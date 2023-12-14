@@ -54,7 +54,56 @@ public class SwaggerConfig {
                 .security(List.of(securityRequirement))
                 .info(info);
 
+        try {
+            // Load the custom YAML file
+            Yaml yaml = new Yaml();
+            InputStream inputStream = new ClassPathResource("swagger.yaml").getInputStream();
+            Map<String, Object> yamlMap = yaml.load(inputStream);
 
+            // Get the paths from the custom YAML file
+            Map<String, LinkedHashMap> yamlPaths = (Map<String, LinkedHashMap>) yamlMap.get("paths");
+
+            // Get the paths from the auto-generated OpenAPI documentation
+            Paths openAPIPaths = openAPI.getPaths();
+
+            // If openAPIPaths is null, initialize it
+            if (openAPIPaths == null) {
+                openAPIPaths = new Paths();
+                openAPI.setPaths(openAPIPaths);
+            }
+
+            // Merge the paths
+            for (Map.Entry<String, LinkedHashMap> entry : yamlPaths.entrySet()) {
+                String path = entry.getKey();
+                LinkedHashMap yamlPathItemMap = entry.getValue();
+
+                // Convert the LinkedHashMap to a PathItem
+                ObjectMapper mapper = Json.mapper();
+                PathItem yamlPathItem = mapper.convertValue(yamlPathItemMap, PathItem.class);
+
+                // If the path already exists in the auto-generated documentation, update it
+                if (openAPIPaths.containsKey(path)) {
+                    PathItem openAPIPathItem = openAPIPaths.get(path);
+
+                    // Merge the operations
+                    openAPIPathItem.readOperations().forEach(operation -> {
+                        // Get the responses from the auto-generated documentation
+                        ApiResponses openAPIResponses = operation.getResponses();
+
+                        // Get the responses from the custom YAML file
+                        ApiResponses yamlResponses = yamlPathItem.readOperations().get(0).getResponses();
+
+                        // Merge the responses
+                        openAPIResponses.putAll(yamlResponses);
+                    });
+                } else {
+                    // If the path does not exist in the auto-generated documentation, add it
+                    openAPIPaths.addPathItem(path, yamlPathItem);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load custom YAML file", e);
+        }
 
         return openAPI;
 
