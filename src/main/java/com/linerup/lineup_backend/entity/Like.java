@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Getter
 @RequiredArgsConstructor
+@Table(name = "likes")
 public class Like {
 
     @Id

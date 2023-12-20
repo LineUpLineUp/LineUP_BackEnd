@@ -1,9 +1,9 @@
 package com.linerup.lineup_backend.entity.member;
 
 import com.linerup.lineup_backend.common.model.BaseEntity;
-import com.linerup.lineup_backend.entity.OAuth2Provider;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -27,8 +27,7 @@ public class Member extends BaseEntity {
     private Long id; // 유저 id
 
     @Nonnull
-    @Enumerated(EnumType.STRING)
-    private OAuth2Provider provider; // SNS 로그인 register
+    private String provider; // SNS 로그인 register
 
     @Nonnull
     private String providerId; // SNS 로그인 registerId(SNS)
@@ -59,7 +58,7 @@ public class Member extends BaseEntity {
     protected Member() {
     }
 
-    public Member(Long id, OAuth2Provider provider, String providerId, Role role, String email, String nickname, String name, String phone, LocalDateTime birth, String gender, String profileImage, boolean isAuthenticated) {
+    public Member(Long id, String provider, String providerId, Role role, String email, String nickname, String name, String phone, LocalDateTime birth, String gender, String profileImage, boolean isAuthenticated) {
         this.id = id;
         this.provider = provider;
         this.providerId = providerId;
@@ -74,11 +73,15 @@ public class Member extends BaseEntity {
         this.isAuthenticated = isAuthenticated;
     }
 
-    public Member(OAuth2Provider provider, String providerId, String email, String name) {
+    @Builder(builderClassName = "OAuth2Register", builderMethodName = "oauth2Register")
+    public Member(String provider, String providerId, String email, Role role, String name, LocalDateTime createdDate) {
         this.provider = provider;
         this.providerId = providerId;
         this.email = email;
+        this.role = role;
         this.name = name;
+        setCreatedDate(createdDate);
+        setModifiedDate(createdDate);
     }
 
     @Override
