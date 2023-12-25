@@ -2,12 +2,8 @@ package com.linerup.lineup_backend.oauth2;
 
 import com.linerup.lineup_backend.entity.member.Member;
 import com.linerup.lineup_backend.entity.member.Role;
-import com.linerup.lineup_backend.oauth2.userinfo.GoogleUserInfo;
-import com.linerup.lineup_backend.oauth2.userinfo.KakaoUserInfo;
-import com.linerup.lineup_backend.oauth2.userinfo.NaverUserInfo;
-import com.linerup.lineup_backend.oauth2.userinfo.OAuth2UserInfo;
+import com.linerup.lineup_backend.oauth2.userinfo.*;
 import com.linerup.lineup_backend.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -46,8 +42,9 @@ public class PrincipalOAuth2UserService extends DefaultOAuth2UserService {
             oAuth2UserInfo = new NaverUserInfo(oAuth2User.getAttributes());
         } else if (provider.equals("kakao")) {
             oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
+        } else if (provider.equals("apple")) {
+            oAuth2UserInfo = new AppleUserInfo(oAuth2User.getAttributes());
         }
-        // TODO: apple login
 
         String providerId = oAuth2UserInfo.getProviderId();
         String email = oAuth2UserInfo.getEmail();

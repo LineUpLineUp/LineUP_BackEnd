@@ -34,7 +34,7 @@ public class SecurityConfig {
                 "/error"
         };
         http.oauth2Login()
-                .defaultSuccessUrl("/oauth/userInfo", true) // 로그인 성공시 이동할 URL
+                .defaultSuccessUrl("/oauth2/userInfo", true) // 로그인 성공시 이동할 URL
                 .userInfoEndpoint()// 사용자가 로그인에 성공하였을 경우,
                 .userService(principalOAuth2UserService); // 해당 서비스 로직을 타도록 설정
 
@@ -45,8 +45,8 @@ public class SecurityConfig {
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.csrf().disable() // csrf 보안 설정 사용 X
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement();
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeHttpRequests() // 사용자가 보내는 요청에 인증 절차 수행 필요
                 .requestMatchers(permitAllUrlPatterns).permitAll() // 해당 URL은 인증 절차 수행 생략 가능
