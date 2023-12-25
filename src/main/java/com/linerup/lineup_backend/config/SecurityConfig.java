@@ -1,5 +1,6 @@
 package com.linerup.lineup_backend.config;
 
+import com.linerup.lineup_backend.oauth2.PrincipalOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final PrincipalOAuth2UserService principalOAuth2UserService;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         String[] permitAllUrlPatterns = {
@@ -31,14 +34,23 @@ public class SecurityConfig {
                 "/error"
         };
         http.oauth2Login()
-                .and()
-                .csrf().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .defaultSuccessUrl("/oauth2/userInfo", true) // 로그인 성공시 이동할 URL
+                .userInfoEndpoint()// 사용자가 로그인에 성공하였을 경우,
+                .userService(principalOAuth2UserService); // 해당 서비스 로직을 타도록 설정
 
-        http.authorizeHttpRequests()
-                .requestMatchers(permitAllUrlPatterns).permitAll()
-                .anyRequest().authenticated();
+
+//                .and()
+//                .csrf().disable()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.csrf().disable() // csrf 보안 설정 사용 X
+                .sessionManagement();
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.authorizeHttpRequests() // 사용자가 보내는 요청에 인증 절차 수행 필요
+                .requestMatchers(permitAllUrlPatterns).permitAll() // 해당 URL은 인증 절차 수행 생략 가능
+                .anyRequest().authenticated(); // 나머지 요청들은 모두 인증 절차 수행해야함.
 
         return http.build();
     }

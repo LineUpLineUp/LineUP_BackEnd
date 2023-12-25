@@ -45,7 +45,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath profileImage = createString("profileImage");
 
-    public final EnumPath<com.linerup.lineup_backend.entity.OAuth2Provider> provider = createEnum("provider", com.linerup.lineup_backend.entity.OAuth2Provider.class);
+    public final StringPath provider = createString("provider");
 
     public final StringPath providerId = createString("providerId");
 
